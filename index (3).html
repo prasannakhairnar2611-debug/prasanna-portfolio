@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Prasanna Khairnar | Web Developer &amp; AI Enthusiast</title>
+<meta name="description" content="Portfolio of Prasanna Khairnar, a Computer Engineering student, Web Developer, and AI enthusiast building modern digital experiences." />
+<meta property="og:title" content="Prasanna Khairnar | Web Developer & AI Enthusiast" />
+<meta property="og:description" content="Portfolio of Prasanna Khairnar, a Computer Engineering student, Web Developer, and AI enthusiast building modern digital experiences." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%2305070D' stroke='%234CE7FF' stroke-width='6'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%234CE7FF'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root{
+  --void:#05070D;
+  --panel:#0B0F1AF0;
+  --panel-soft:#0D1220CC;
+  --line:#1E2A3C;
+  --ion:#4CE7FF;
+  --ion-dim:#4CE7FF33;
+  --nebula:#9B6BFF;
+  --nebula-dim:#9B6BFF33;
+  --signal:#FFB454;
+  --danger:#FF5C7A;
+  --ok:#5CFFA6;
+  --text:#E8F3FF;
+  --text-dim:#8CA0BE;
+  --text-faint:#516079;
+  --display:'Rajdhani',sans-serif;
+  --body:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --radius:14px;
+  --ease:cubic-bezier(.16,.84,.44,1);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+}
+body{
+  margin:0;background:var(--void);color:var(--text);
+  font-family:var(--body);overflow-x:hidden;
+  cursor:auto;
+}
+body.has-cursor, body.has-cursor a, body.has-cursor button, body.has-cursor input, body.has-cursor textarea{cursor:none;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;margin:0;letter-spacing:.02em;}
+p{margin:0;line-height:1.6;color:var(--text-dim);}
+a{color:inherit;text-decoration:none;}
+button{font-family:var(--body);}
+::selection{background:var(--ion);color:#001018;}
+
+/* focus states */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline:2px solid var(--ion); outline-offset:3px; border-radius:4px;
+}
+
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ion);display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--ion);display:inline-block;}
+
+.glass{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  backdrop-filter:blur(14px);
+  position:relative;
+}
+.glass::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(135deg,var(--ion-dim),transparent 40%,var(--nebula-dim));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+
+.section{max-width:1180px;margin:0 auto;padding:120px 28px;position:relative;}
+@media (max-width:768px){.section{padding:80px 20px;}}
+
+.btn{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 26px;border-radius:8px;border:1px solid var(--line);background:transparent;
+  color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+  transition:border-color .25s var(--ease),background .25s var(--ease),color .25s var(--ease),transform .2s var(--ease);
+  position:relative;overflow:hidden;
+}
+.btn-primary{background:var(--ion);color:#001018;border-color:var(--ion);font-weight:700;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px -6px var(--ion-dim);}
+.btn-ghost:hover{border-color:var(--ion);color:var(--ion);}
+.btn[disabled]{opacity:.4;cursor:not-allowed;}
+.btn[disabled]:hover{transform:none;box-shadow:none;}
+
+/* ============================================================
+   BACKGROUND CANVAS + GRID
+   ============================================================ */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, black 10%, transparent 75%);
+}
+.bg-glow{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(600px 400px at 15% 10%, var(--nebula-dim), transparent 60%),
+             radial-gradient(700px 500px at 90% 30%, var(--ion-dim), transparent 60%);
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+#cursor-dot,#cursor-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);}
+#cursor-dot{width:6px;height:6px;background:var(--ion);box-shadow:0 0 8px var(--ion);}
+#cursor-ring{width:32px;height:32px;border:1px solid var(--ion-dim);transition:width .18s var(--ease),height .18s var(--ease),border-color .18s var(--ease);}
+#cursor-ring.expand{width:52px;height:52px;border-color:var(--ion);}
+
+/* ============================================================
+   BOOT SEQUENCE
+   ============================================================ */
+#boot{
+  position:fixed;inset:0;z-index:10000;background:var(--void);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .6s var(--ease),visibility .6s var(--ease);
+  font-family:var(--mono);
+}
+#boot.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+#boot .boot-title{font-family:var(--display);font-size:clamp(24px,5vw,40px);letter-spacing:.12em;color:var(--ion);text-shadow:0 0 24px var(--ion-dim);}
+#boot .boot-sub{color:var(--text-faint);font-size:12px;letter-spacing:.3em;margin-top:8px;}
+#boot .checks{margin-top:36px;width:min(360px,80vw);display:flex;flex-direction:column;gap:9px;}
+#boot .check-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-faint);opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s;}
+#boot .check-item.show{opacity:1;transform:translateY(0);}
+#boot .check-item.ok{color:var(--text-dim);}
+#boot .check-item .mark{width:16px;color:var(--ok);}
+#boot .status{margin-top:28px;color:var(--ok);letter-spacing:.3em;font-size:13px;opacity:0;transition:opacity .4s;}
+#boot .status.show{opacity:1;}
+#skip-intro{
+  position:absolute;bottom:34px;right:34px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  color:var(--text-faint);background:transparent;border:1px solid var(--line);padding:10px 16px;border-radius:6px;cursor:pointer;
+}
+#skip-intro:hover{color:var(--ion);border-color:var(--ion);}
+#boot .bar{width:min(360px,80vw);height:2px;background:var(--line);margin-top:22px;overflow:hidden;border-radius:2px;}
+#boot .bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--ion),var(--nebula));transition:width .3s linear;}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 32px;transition:background .3s,border-color .3s,padding .3s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled{background:#05070Dcc;backdrop-filter:blur(16px);border-color:var(--line);padding:12px 32px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;letter-spacing:.08em;font-size:17px;}
+.brand-mark{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ion);position:relative;display:grid;place-items:center;}
+.brand-mark::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--ion);box-shadow:0 0 10px var(--ion);animation:pulseDot 2.4s ease-in-out infinite;}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+#nav-links{display:flex;gap:6px;list-style:none;margin:0;padding:6px;border:1px solid var(--line);border-radius:999px;background:#0B0F1A88;}
+#nav-links a{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:999px;color:var(--text-dim);transition:color .2s,background .2s;display:inline-block;}
+#nav-links a:hover,#nav-links a.active{color:var(--ion);background:var(--ion-dim);}
+.ai-status{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ok);}
+.ai-status .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:pulseDot 2s infinite;}
+.nav-right{display:flex;align-items:center;gap:18px;}
+#nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:9px 11px;color:var(--text);}
+@media (max-width:900px){
+  #nav-links{display:none;}
+  .ai-status{display:none;}
+  #nav-toggle{display:block;}
+}
+#mobile-menu{
+  position:fixed;inset:0;z-index:480;background:#05070Df2;backdrop-filter:blur(10px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+#mobile-menu.open{opacity:1;pointer-events:auto;}
+#mobile-menu a{font-family:var(--display);font-size:26px;letter-spacing:.05em;color:var(--text-dim);}
+#mobile-menu a:hover{color:var(--ion);}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{
+  min-height:100svh;display:flex;align-items:center;position:relative;z-index:1;
+  padding:120px 32px 60px;
+}
+.hero-wrap{max-width:1280px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;}
+@media (max-width:980px){.hero-wrap{grid-template-columns:1fr;text-align:center;}}
+.hero-title{font-size:clamp(38px,6.2vw,72px);line-height:1.02;letter-spacing:.01em;}
+.hero-title .accent{color:var(--ion);text-shadow:0 0 28px var(--ion-dim);}
+.hero-role{font-family:var(--mono);font-size:clamp(12px,1.6vw,15px);letter-spacing:.2em;color:var(--text-dim);margin-top:18px;text-transform:uppercase;}
+.hero-role span{color:var(--nebula);}
+.hero-tagline{margin-top:22px;font-size:17px;color:var(--text-dim);max-width:480px;}
+@media (max-width:980px){.hero-tagline{margin-inline:auto;}}
+.hero-actions{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;}
+@media (max-width:980px){.hero-actions{justify-content:center;}}
+
+.orb-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px;}
+#orb-canvas{width:min(420px,90vw);height:min(420px,90vw);}
+.hud-float{
+  position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--text-dim);
+  padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:#0B0F1Aaa;backdrop-filter:blur(6px);
+  display:flex;align-items:center;gap:7px;animation:floatY 5s ease-in-out infinite;
+}
+.hud-float .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);}
+.hud-float.f1{top:8%;left:-4%;}
+.hud-float.f2{top:20%;right:-8%;animation-delay:.6s;}
+.hud-float.f3{bottom:16%;left:-8%;animation-delay:1.2s;}
+.hud-float.f4{bottom:4%;right:-2%;animation-delay:1.8s;}
+@media (max-width:980px){.hud-float{position:static;margin:6px;display:inline-flex;animation:none;}}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* ============================================================
+   SECTION HEADERS
+   ============================================================ */
+.sec-head{margin-bottom:52px;max-width:640px;}
+.sec-head h2{font-size:clamp(28px,4vw,42px);}
+.sec-head p{margin-top:14px;font-size:15.5px;}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+@media (max-width:840px){.about-grid{grid-template-columns:1fr;}}
+.about-copy p{font-size:16px;}
+.info-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+.info-card{padding:20px;transition:transform .25s var(--ease),border-color .25s;}
+.info-card:hover{transform:translateY(-4px);border-color:var(--ion-dim);}
+.info-card .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ion);text-transform:uppercase;}
+.info-card .value{margin-top:8px;font-family:var(--display);font-size:16.5px;font-weight:600;}
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skill-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
+.skill-tab{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text-dim);cursor:pointer;
+  transition:all .2s var(--ease);
+}
+.skill-tab:hover{color:var(--text);}
+.skill-tab.active{color:#001018;background:var(--ion);border-color:var(--ion);font-weight:700;}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
+.skill-card{
+  padding:20px 16px;text-align:center;cursor:default;transition:transform .3s var(--ease),border-color .3s;
+  perspective:600px;
+}
+.skill-card:hover{transform:translateY(-6px) rotateX(4deg);border-color:var(--nebula-dim);}
+.skill-card .sk-name{font-family:var(--display);font-weight:700;font-size:17px;}
+.skill-card .sk-status{
+  margin-top:10px;display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+  padding:4px 10px;border-radius:999px;text-transform:uppercase;
+}
+.st-building{color:var(--ok);background:#5CFFA61a;}
+.st-familiar{color:var(--ion);background:var(--ion-dim);}
+.st-learning{color:var(--signal);background:#FFB4541a;}
+.st-exploring{color:var(--nebula);background:var(--nebula-dim);}
+.skill-card .sk-desc{margin-top:10px;font-size:11.5px;color:var(--text-faint);opacity:0;max-height:0;overflow:hidden;transition:opacity .25s,max-height .25s;}
+.skill-card:hover .sk-desc{opacity:1;max-height:60px;}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.project-list{display:flex;flex-direction:column;gap:22px;}
+.project-card{
+  padding:30px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:start;cursor:pointer;
+  transition:transform .3s var(--ease),border-color .3s;
+}
+.project-card:hover{transform:translateX(6px);border-color:var(--ion-dim);}
+@media (max-width:760px){.project-card{grid-template-columns:1fr;}}
+.project-index{font-family:var(--mono);font-size:13px;color:var(--nebula);letter-spacing:.1em;}
+.project-title{font-size:20px;margin-top:2px;}
+.project-desc{margin-top:10px;font-size:14px;max-width:560px;}
+.project-features{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.feature-chip{font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding:5px 10px;border:1px solid var(--line);border-radius:6px;color:var(--text-faint);}
+.project-cta{display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+@media (max-width:760px){.project-cta{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}}
+.project-cta .btn{padding:9px 16px;font-size:10.5px;}
+
+/* modal */
+#project-modal{
+  position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+#project-modal.open{opacity:1;pointer-events:auto;}
+#project-modal .backdrop{position:absolute;inset:0;background:#03040aee;backdrop-filter:blur(6px);}
+#project-modal .modal-panel{
+  position:relative;max-width:640px;width:100%;padding:36px;transform:scale(.92) translateY(12px);transition:transform .35s var(--ease);
+  max-height:86vh;overflow:auto;
+}
+#project-modal.open .modal-panel{transform:scale(1) translateY(0);}
+#project-modal .modal-close{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--line);border-radius:8px;color:var(--text-dim);padding:8px 10px;cursor:pointer;}
+#project-modal .modal-close:hover{color:var(--ion);border-color:var(--ion);}
+.modal-tech{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+
+/* ============================================================
+   JOURNEY / TIMELINE
+   ============================================================ */
+.timeline{position:relative;padding-left:36px;}
+.timeline::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--ion),var(--nebula));opacity:.4;}
+.t-item{position:relative;padding-bottom:44px;opacity:0;transform:translateX(-16px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.t-item.in{opacity:1;transform:translateX(0);}
+.t-item:last-child{padding-bottom:0;}
+.t-item::before{content:'';position:absolute;left:-36px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--void);border:2px solid var(--ion);}
+.t-item.in::before{box-shadow:0 0 14px var(--ion-dim);}
+.t-index{font-family:var(--mono);font-size:11px;color:var(--nebula);letter-spacing:.16em;}
+.t-title{font-size:19px;margin-top:4px;}
+.t-desc{margin-top:8px;font-size:14px;max-width:500px;}
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.ach-card{padding:22px;display:flex;flex-direction:column;gap:10px;}
+.ach-card .ach-icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line);font-family:var(--mono);font-size:15px;}
+.ach-card.unlocked .ach-icon{color:var(--ion);border-color:var(--ion-dim);}
+.ach-card.locked{opacity:.5;}
+.ach-card .ach-name{font-family:var(--display);font-weight:700;font-size:15.5px;}
+.ach-card .ach-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--text-faint);text-transform:uppercase;}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;}
+@media (max-width:840px){.contact-grid{grid-template-columns:1fr;}}
+.field{margin-bottom:18px;}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px;}
+.field input,.field textarea{
+  width:100%;background:#05070Da0;border:1px solid var(--line);border-radius:8px;padding:13px 14px;color:var(--text);
+  font-family:var(--body);font-size:14px;transition:border-color .2s;resize:vertical;
+}
+.field input:focus,.field textarea:focus{border-color:var(--ion);outline:none;}
+.field .err{color:var(--danger);font-size:11.5px;margin-top:6px;font-family:var(--mono);display:none;}
+.field.invalid input,.field.invalid textarea{border-color:var(--danger);}
+.field.invalid .err{display:block;}
+#contact-status{margin-top:14px;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;display:none;}
+#contact-status.show{display:block;}
+#contact-status.ok{color:var(--ok);}
+#contact-status.bad{color:var(--danger);}
+.contact-side{padding:26px;}
+.contact-side .row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+.contact-side .row:last-child{border-bottom:none;}
+.contact-side .row a:hover{color:var(--ion);}
+.resume-note{margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{padding:40px 28px;text-align:center;border-top:1px solid var(--line);position:relative;z-index:1;}
+footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--text-faint);}
+
+/* ============================================================
+   AI ASSISTANT
+   ============================================================ */
+#ai-launcher{
+  position:fixed;bottom:26px;right:26px;z-index:900;width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#8DF6FF,var(--ion) 55%,#0F7A96 100%);
+  border:none;cursor:pointer;box-shadow:0 0 0 1px var(--ion-dim),0 10px 40px -8px var(--ion-dim);
+  display:grid;place-items:center;transition:transform .25s var(--ease);
+}
+#ai-launcher:hover{transform:scale(1.07);}
+#ai-launcher svg{width:26px;height:26px;}
+#ai-launcher .ring{position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--ion-dim);animation:spin 6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+#ai-panel{
+  position:fixed;bottom:26px;right:26px;z-index:950;width:380px;max-width:calc(100vw - 32px);
+  height:min(600px,calc(100vh - 100px));display:flex;flex-direction:column;
+  transform:translateY(24px) scale(.96);opacity:0;pointer-events:none;transition:all .3s var(--ease);
+  overflow:hidden;
+}
+#ai-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;}
+#ai-panel.minimized{height:64px;}
+.ai-head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);}
+.ai-orb-mini{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#8DF6FF,var(--ion) 60%,#0F7A96);flex:none;position:relative;}
+.ai-orb-mini.listening{animation:pulseDot 1s infinite;box-shadow:0 0 16px var(--ion);}
+.ai-head-text{flex:1;min-width:0;}
+.ai-head-text .name{font-family:var(--display);font-weight:700;font-size:14.5px;}
+.ai-head-text .stat{font-family:var(--mono);font-size:10px;color:var(--ok);letter-spacing:.1em;}
+.ai-head-actions{display:flex;gap:6px;}
+.ai-head-actions button{background:none;border:1px solid var(--line);border-radius:6px;color:var(--text-dim);padding:6px 8px;cursor:pointer;}
+.ai-head-actions button:hover{color:var(--ion);border-color:var(--ion);}
+#ai-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+#ai-panel.minimized #ai-messages,#ai-panel.minimized .ai-quick,#ai-panel.minimized .ai-input-row{display:none;}
+.msg{max-width:85%;padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.5;}
+.msg.bot{align-self:flex-start;background:#0D1220;border:1px solid var(--line);border-bottom-left-radius:3px;}
+.msg.user{align-self:flex-end;background:var(--ion-dim);border:1px solid var(--ion-dim);color:var(--text);border-bottom-right-radius:3px;}
+.msg.typing{display:flex;gap:4px;align-items:center;padding:13px 16px;}
+.msg.typing span{width:6px;height:6px;border-radius:50%;background:var(--ion);animation:typingBounce 1s infinite;}
+.msg.typing span:nth-child(2){animation-delay:.15s;}
+.msg.typing span:nth-child(3){animation-delay:.3s;}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.4;}30%{transform:translateY(-4px);opacity:1;}}
+.ai-quick{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px;}
+.ai-quick button{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text-dim);cursor:pointer;}
+.ai-quick button:hover{color:var(--ion);border-color:var(--ion);}
+.ai-input-row{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--line);}
+#ai-input{flex:1;background:#05070Da0;border:1px solid var(--line);border-radius:8px;padding:11px 12px;color:var(--text);font-size:13.5px;font-family:var(--body);}
+#ai-input:focus{outline:none;border-color:var(--ion);}
+#ai-send,#ai-mic{background:var(--ion);color:#001018;border:none;border-radius:8px;padding:0 14px;cursor:pointer;display:grid;place-items:center;}
+#ai-mic{background:transparent;border:1px solid var(--line);color:var(--text-dim);}
+#ai-mic.listening{color:var(--danger);border-color:var(--danger);}
+#ai-mic:hover{border-color:var(--ion);color:var(--ion);}
+
+/* ============================================================
+   TERMINAL
+   ============================================================ */
+#term-launcher{
+  position:fixed;bottom:26px;left:26px;z-index:900;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#0B0F1Ad0;backdrop-filter:blur(8px);
+  color:var(--text-dim);cursor:pointer;display:flex;align-items:center;gap:8px;
+}
+#term-launcher:hover{color:var(--ion);border-color:var(--ion);}
+#terminal{
+  position:fixed;inset:0;z-index:2500;background:#02030699;backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .25s var(--ease);
+}
+#terminal.open{opacity:1;pointer-events:auto;}
+.term-box{width:min(720px,92vw);height:min(460px,72vh);display:flex;flex-direction:column;padding:0;overflow:hidden;}
+.term-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+.term-bar button{background:none;border:none;color:var(--text-faint);cursor:pointer;font-size:14px;}
+.term-bar button:hover{color:var(--danger);}
+#term-output{flex:1;overflow-y:auto;padding:16px;font-family:var(--mono);font-size:13px;color:var(--text-dim);line-height:1.7;}
+#term-output .line{white-space:pre-wrap;word-break:break-word;}
+#term-output .cmd{color:var(--ion);}
+#term-output .ok-line{color:var(--ok);}
+.term-input-row{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:13px;}
+.term-input-row .prompt{color:var(--ion);}
+#term-input{flex:1;background:none;border:none;color:var(--text);font-family:var(--mono);font-size:13px;}
+#term-input:focus{outline:none;}
+
+/* ============================================================
+   SOUND TOGGLE
+   ============================================================ */
+#sound-toggle{
+  position:fixed;top:96px;right:20px;z-index:400;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  padding:9px 13px;border-radius:999px;border:1px solid var(--line);background:#0B0F1Aa0;backdrop-filter:blur(8px);
+  color:var(--text-dim);cursor:pointer;display:none;
+}
+@media (min-width:640px){#sound-toggle{display:block;}}
+#sound-toggle:hover{color:var(--ion);border-color:var(--ion);}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* scrollbars */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;}
+::-webkit-scrollbar-thumb:hover{background:var(--ion-dim);}
+</style>
+</head>
+<body>
+
+<!-- ================= BOOT SEQUENCE ================= -->
+<div id="boot" role="status" aria-live="polite">
+  <div class="boot-title">PRASANNA AI SYSTEM</div>
+  <div class="boot-sub" id="boot-status-text">INITIALIZING&hellip;</div>
+  <div class="checks" id="boot-checks"></div>
+  <div class="bar"><div class="bar-fill" id="boot-bar"></div></div>
+  <div class="status" id="boot-online">SYSTEM ONLINE</div>
+  <button id="skip-intro">SKIP INTRO &rarr;</button>
+</div>
+
+<!-- ================= CUSTOM CURSOR ================= -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- ================= BACKGROUND ================= -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<!-- ================= SOUND TOGGLE ================= -->
+<button id="sound-toggle" aria-pressed="false">SOUND: OFF</button>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <a href="#hero" class="brand"><span class="brand-mark" aria-hidden="true"></span> PRASANNA.AI</a>
+  <ul id="nav-links">
+    <li><a href="#hero" data-nav>Home</a></li>
+    <li><a href="#about" data-nav>About</a></li>
+    <li><a href="#skills" data-nav>Skills</a></li>
+    <li><a href="#projects" data-nav>Projects</a></li>
+    <li><a href="#journey" data-nav>Journey</a></li>
+    <li><a href="#contact" data-nav>Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="ai-status"><span class="dot"></span> AI ONLINE</div>
+    <button id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+<div id="mobile-menu">
+  <a href="#hero" data-nav>Home</a>
+  <a href="#about" data-nav>About</a>
+  <a href="#skills" data-nav>Skills</a>
+  <a href="#projects" data-nav>Projects</a>
+  <a href="#journey" data-nav>Journey</a>
+  <a href="#contact" data-nav>Contact</a>
+</div>
+
+<main>
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="hero-wrap">
+    <div>
+      <div class="eyebrow">SYSTEM STATUS: ONLINE</div>
+      <h1 class="hero-title">PRASANNA <span class="accent">KHAIRNAR</span></h1>
+      <div class="hero-role">COMPUTER ENGINEERING STUDENT <span>&middot;</span> WEB DEVELOPER <span>&middot;</span> AI ENTHUSIAST</div>
+      <p class="hero-tagline">Building intelligent digital experiences for the future.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">EXPLORE SYSTEM</a>
+        <a href="#contact" class="btn btn-ghost">CONTACT ME</a>
+      </div>
+    </div>
+    <div class="orb-stage">
+      <canvas id="orb-canvas" aria-hidden="true"></canvas>
+      <div class="hud-float f1"><span class="dot"></span> SYSTEM STATUS: ONLINE</div>
+      <div class="hud-float f2"><span class="dot"></span> AI CORE: ACTIVE</div>
+      <div class="hud-float f3"><span class="dot"></span> WEB ENGINE: READY</div>
+      <div class="hud-float f4"><span class="dot"></span> PROJECTS: ONLINE</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Profile</div>
+    <h2>About the System Operator</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-copy">
+      <p id="about-text"></p>
+    </div>
+    <div class="info-cards">
+      <div class="glass info-card"><div class="label">Education</div><div class="value" id="ic-education"></div></div>
+      <div class="glass info-card"><div class="label">Interest</div><div class="value">Web Development + AI</div></div>
+      <div class="glass info-card"><div class="label">Focus</div><div class="value">Building Real-World Projects</div></div>
+      <div class="glass info-card"><div class="label">Goal</div><div class="value">Strong Software Engineer &amp; Entrepreneur</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Technology Systems</div>
+    <h2>Skills Dashboard</h2>
+    <p>Status reflects honest progress &mdash; not inflated percentages.</p>
+  </div>
+  <div class="skill-tabs" id="skill-tabs" role="tablist"></div>
+  <div class="skill-grid" id="skill-grid"></div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Deployed Modules</div>
+    <h2>Projects</h2>
+  </div>
+  <div class="project-list" id="project-list"></div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section id="journey" class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Timeline</div>
+    <h2>My Digital Journey</h2>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section id="achievements" class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Progress Log</div>
+    <h2>Achievement System</h2>
+  </div>
+  <div class="ach-grid" id="ach-grid"></div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Communication</div>
+    <h2>Establish Connection</h2>
+  </div>
+  <div class="contact-grid">
+    <form class="glass" style="padding:30px;" id="contact-form" novalidate>
+      <div class="field" id="f-name">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" />
+        <div class="err">Please enter your name.</div>
+      </div>
+      <div class="field" id="f-email">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" />
+        <div class="err">Please enter a valid email address.</div>
+      </div>
+      <div class="field" id="f-message">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" rows="5"></textarea>
+        <div class="err">Please enter a message.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">SEND TRANSMISSION</button>
+      <div id="contact-status" role="status"></div>
+    </form>
+    <div class="glass contact-side">
+      <div class="row"><span>Email</span><a id="link-email" href="#">contact@example.com</a></div>
+      <div class="row"><span>GitHub</span><a id="link-github" href="#" target="_blank" rel="noopener">Add your link</a></div>
+      <div class="row"><span>LinkedIn</span><a id="link-linkedin" href="#" target="_blank" rel="noopener">Add your link</a></div>
+      <div class="row"><span>Instagram</span><a id="link-instagram" href="#" target="_blank" rel="noopener">Add your link</a></div>
+      <div class="row"><span>Resume</span><button class="btn btn-ghost" id="resume-btn" style="padding:8px 14px;font-size:10px;">DOWNLOAD</button></div>
+      <div class="resume-note" id="resume-note"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> PRASANNA KHAIRNAR &mdash; SYSTEM BUILT WITH REACT-STYLE THINKING, RUN AS A SINGLE HTML MODULE.</p>
+</footer>
+
+<!-- ================= PROJECT MODAL ================= -->
+<div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="backdrop" data-close-modal></div>
+  <div class="glass modal-panel">
+    <button class="modal-close" data-close-modal aria-label="Close">&#10005;</button>
+    <div class="project-index" id="modal-index"></div>
+    <h3 id="modal-title" style="margin-top:6px;font-size:24px;"></h3>
+    <p id="modal-desc" style="margin-top:14px;"></p>
+    <div class="project-features" id="modal-features"></div>
+    <div class="modal-tech" id="modal-tech"></div>
+    <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;">
+      <button class="btn btn-primary" id="modal-view">VIEW PROJECT</button>
+      <button class="btn btn-ghost" id="modal-code">VIEW CODE</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= AI ASSISTANT ================= -->
+<button id="ai-launcher" aria-haspopup="dialog" aria-controls="ai-panel" aria-label="Open Prasanna AI assistant">
+  <span class="ring" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="#001018" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+</button>
+
+<div id="ai-panel" class="glass" role="dialog" aria-label="Prasanna AI assistant">
+  <div class="ai-head">
+    <div class="ai-orb-mini" id="ai-orb-mini"></div>
+    <div class="ai-head-text">
+      <div class="name">PRASANNA AI</div>
+      <div class="stat" id="ai-stat">ONLINE</div>
+    </div>
+    <div class="ai-head-actions">
+      <button id="ai-clear" title="Clear chat" aria-label="Clear chat">&#8635;</button>
+      <button id="ai-min" title="Minimize" aria-label="Minimize">&#8211;</button>
+      <button id="ai-close" title="Close" aria-label="Close">&#10005;</button>
+    </div>
+  </div>
+  <div id="ai-messages" aria-live="polite"></div>
+  <div class="ai-quick" id="ai-quick">
+    <button data-q="about">ABOUT</button>
+    <button data-q="skills">SKILLS</button>
+    <button data-q="projects">PROJECTS</button>
+    <button data-q="education">EDUCATION</button>
+    <button data-q="contact">CONTACT</button>
+  </div>
+  <div class="ai-input-row">
+    <button id="ai-mic" aria-label="Voice command" title="Voice command">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg>
+    </button>
+    <input id="ai-input" type="text" placeholder="Ask about skills, projects..." autocomplete="off" />
+    <button id="ai-send" aria-label="Send message">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ================= TERMINAL ================= -->
+<button id="term-launcher"><span aria-hidden="true">&gt;_</span> COMMAND CENTER</button>
+<div id="terminal" role="dialog" aria-modal="true" aria-label="Command terminal">
+  <div class="glass term-box">
+    <div class="term-bar">
+      <span>PRASANNA_TERMINAL v1.0 &mdash; type "help"</span>
+      <button id="term-close" aria-label="Close terminal">&#10005;</button>
+    </div>
+    <div id="term-output"></div>
+    <div class="term-input-row">
+      <span class="prompt">&gt;</span>
+      <input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input" />
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   33. CUSTOMIZATION PANEL — edit everything about the portfolio here
+   ============================================================ */
+const CONFIG = {
+  name: "Prasanna Khairnar",
+  aiName: "PRASANNA AI",
+  role: "Computer Engineering Student | Web Developer | AI Enthusiast",
+  tagline: "Building intelligent digital experiences for the future.",
+  location: "Shirpur, Maharashtra, India",
+  education: "Diploma in Computer Engineering",
+  college: "R C Patel College of Engineering and Polytechnic",
+  bio: "I am a passionate Computer Engineering student interested in Web Development, Artificial Intelligence, UI/UX, automation, and emerging technologies. I enjoy building practical digital products that solve real-world problems.",
+  goal: "Become a Strong Software Engineer and Entrepreneur.",
+  interests: ["Web Development","Artificial Intelligence","AI Assistants","Automation","UI/UX","3D Web Experiences","Hackathons","Startup Ideas","Problem Solving"],
+  email: "your.email@example.com", // TODO: replace with real email
+  social: {
+    github: "", // TODO: add real GitHub URL
+    linkedin: "", // TODO: add real LinkedIn URL
+    instagram: "" // TODO: add real Instagram URL
+  },
+  resumeUrl: "", // TODO: add a real PDF URL to enable resume download
+  skills: {
+    Frontend: [
+      {name:"HTML", status:"building", desc:"Semantic, accessible markup for real projects."},
+      {name:"CSS", status:"building", desc:"Layouts, animation and responsive design."},
+      {name:"JavaScript", status:"building", desc:"Core language for interactive web apps."},
+      {name:"React", status:"familiar", desc:"Component-based UI development."},
+      {name:"Tailwind CSS", status:"familiar", desc:"Utility-first styling workflow."}
+    ],
+    Backend: [
+      {name:"Node.js", status:"learning", desc:"Server-side JavaScript runtime."},
+      {name:"Express.js", status:"learning", desc:"Minimal backend routing framework."},
+      {name:"Flask", status:"exploring", desc:"Lightweight Python web framework."}
+    ],
+    Programming: [
+      {name:"Python", status:"building", desc:"Scripting, automation and AI experiments."},
+      {name:"C", status:"familiar", desc:"Foundational systems programming."},
+      {name:"C++", status:"familiar", desc:"Object-oriented and DSA practice."},
+      {name:"JavaScript", status:"building", desc:"Applied across frontend and backend."}
+    ],
+    Database: [
+      {name:"SQLite", status:"familiar", desc:"Lightweight relational database."},
+      {name:"MongoDB", status:"learning", desc:"Document-based NoSQL database."},
+      {name:"Firebase", status:"learning", desc:"Realtime database and hosting."}
+    ],
+    Tools: [
+      {name:"Git", status:"building", desc:"Version control for every project."},
+      {name:"GitHub", status:"building", desc:"Collaboration and project hosting."},
+      {name:"VS Code", status:"building", desc:"Primary development environment."},
+      {name:"Figma", status:"exploring", desc:"Interface design and prototyping."}
+    ]
+  },
+  projects: [
+    {
+      id:"complaint-system",
+      title:"Smart Public Complaint Management System",
+      desc:"A digital platform for submitting, tracking, and managing public complaints using location, images, status tracking, and an administrative dashboard.",
+      features:["Complaint registration","GPS location","Image upload","Status tracking","Admin dashboard","Notifications","AI chatbot concept"],
+      tech:["React","Node.js","Express.js","MongoDB"],
+      liveUrl:"", // TODO: add real deployed URL
+      codeUrl:""  // TODO: add real repository URL
+    },
+    {
+      id:"exam-system",
+      title:"Online Examination System",
+      desc:"A web-based examination platform for conducting online tests and managing results.",
+      features:["Authentication","Online exams","Questions","Results","Admin management","Performance analytics"],
+      tech:["React","Flask","SQLite"],
+      liveUrl:"",
+      codeUrl:""
+    },
+    {
+      id:"ai-portfolio",
+      title:"AI Portfolio Assistant",
+      desc:"An AI-powered portfolio interface that allows visitors to interact with a digital assistant and explore portfolio information.",
+      features:["AI chat","Voice interaction","Smart navigation","Project discovery"],
+      tech:["React","TypeScript","Web Speech API"],
+      liveUrl:"",
+      codeUrl:""
+    }
+  ],
+  journey: [
+    {stage:"START", title:"Started exploring Computer Engineering and programming."},
+    {stage:"BUILD", title:"Started building websites and practical projects."},
+    {stage:"EXPLORE", title:"Started exploring Artificial Intelligence and automation."},
+    {stage:"CREATE", title:"Building real-world projects and experimenting with new technologies."},
+    {stage:"FUTURE", title:"Become a strong software engineer, AI builder, and entrepreneur."}
+  ],
+  achievements: [
+    {name:"Project Builder", tag:"3 projects shipped", unlocked:true},
+    {name:"Web Development", tag:"Core frontend skills", unlocked:true},
+    {name:"AI Explorer", tag:"Building AI-driven features", unlocked:true},
+    {name:"Hackathon Participant", tag:"Locked", unlocked:false},
+    {name:"Continuous Learner", tag:"Always exploring new tech", unlocked:true}
+  ]
+};
+
+/* ============================================================
+   AI API CONFIGURATION NOTE (Section 29 / 7)
+   --------------------------------------------------------------
+   This assistant currently answers using ONLY the structured data
+   in CONFIG above (rule-based), so it can never invent facts and
+   never exposes a secret key in the browser.
+
+   To connect a real LLM instead:
+     1. Never call an AI API directly from this frontend with a key.
+     2. Create a small backend endpoint (e.g. /api/assistant) that
+        holds ANTHROPIC_API_KEY in a server-side environment variable.
+     3. Have that endpoint call the Anthropic Messages API, passing
+        CONFIG as context so the model only talks about real facts.
+     4. Replace `answer()` below with a fetch() call to your endpoint.
+   ============================================================ */
+
+/* ---------------- Populate config-driven DOM ---------------- */
+document.getElementById('about-text').textContent = CONFIG.bio;
+document.getElementById('ic-education').textContent = CONFIG.education;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const emailLink = document.getElementById('link-email');
+emailLink.textContent = CONFIG.email;
+emailLink.href = "mailto:" + CONFIG.email;
+
+function wireSocial(id, url, label){
+  const el = document.getElementById(id);
+  if(url){ el.href = url; el.textContent = label; }
+  else { el.removeAttribute('href'); el.style.opacity = .5; el.style.cursor='default'; el.textContent = 'Coming soon'; }
+}
+wireSocial('link-github', CONFIG.social.github, 'View profile');
+wireSocial('link-linkedin', CONFIG.social.linkedin, 'View profile');
+wireSocial('link-instagram', CONFIG.social.instagram, 'View profile');
+
+const resumeBtn = document.getElementById('resume-btn');
+const resumeNote = document.getElementById('resume-note');
+if(CONFIG.resumeUrl){
+  resumeBtn.addEventListener('click', ()=> window.open(CONFIG.resumeUrl, '_blank'));
+  resumeNote.textContent = '';
+} else {
+  resumeBtn.disabled = true;
+  resumeNote.textContent = 'Resume will be available soon.';
+}
+
+/* ---------------- Skills dashboard ---------------- */
+const statusLabel = {building:'BUILDING', familiar:'FAMILIAR', learning:'LEARNING', exploring:'EXPLORING'};
+const skillTabsEl = document.getElementById('skill-tabs');
+const skillGridEl = document.getElementById('skill-grid');
+const categories = Object.keys(CONFIG.skills);
+
+categories.forEach((cat, i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'skill-tab' + (i===0 ? ' active' : '');
+  btn.textContent = cat;
+  btn.setAttribute('role','tab');
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.skill-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSkills(cat);
+  });
+  skillTabsEl.appendChild(btn);
+});
+
+function renderSkills(cat){
+  skillGridEl.innerHTML = '';
+  CONFIG.skills[cat].forEach(s=>{
+    const card = document.createElement('div');
+    card.className = 'glass skill-card';
+    card.innerHTML = `
+      <div class="sk-name">${s.name}</div>
+      <div class="sk-status st-${s.status}">${statusLabel[s.status]}</div>
+      <div class="sk-desc">${s.desc}</div>
+    `;
+    skillGridEl.appendChild(card);
+  });
+}
+renderSkills(categories[0]);
+
+/* ---------------- Projects ---------------- */
+const projectListEl = document.getElementById('project-list');
+CONFIG.projects.forEach((p, i)=>{
+  const card = document.createElement('div');
+  card.className = 'glass project-card';
+  card.tabIndex = 0;
+  card.setAttribute('role','button');
+  card.setAttribute('aria-label', 'Open details for ' + p.title);
+  card.innerHTML = `
+    <div class="project-index">PROJECT ${String(i+1).padStart(2,'0')}</div>
+    <div>
+      <div class="project-title">${p.title}</div>
+      <p class="project-desc">${p.desc}</p>
+      <div class="project-features">${p.features.map(f=>`<span class="feature-chip">${f}</span>`).join('')}</div>
+    </div>
+    <div class="project-cta">
+      <button class="btn btn-ghost" style="pointer-events:none;">DETAILS</button>
+    </div>
+  `;
+  card.addEventListener('click', ()=> openProjectModal(i));
+  card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openProjectModal(i);} });
+  projectListEl.appendChild(card);
+});
+
+const modal = document.getElementById('project-modal');
+function openProjectModal(i){
+  const p = CONFIG.projects[i];
+  document.getElementById('modal-index').textContent = 'PROJECT ' + String(i+1).padStart(2,'0');
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-features').innerHTML = p.features.map(f=>`<span class="feature-chip">${f}</span>`).join('');
+  document.getElementById('modal-tech').innerHTML = p.tech.map(t=>`<span class="feature-chip">${t}</span>`).join('');
+
+  const viewBtn = document.getElementById('modal-view');
+  const codeBtn = document.getElementById('modal-code');
+  configureLinkButton(viewBtn, p.liveUrl, 'VIEW PROJECT');
+  configureLinkButton(codeBtn, p.codeUrl, 'VIEW CODE');
+
+  modal.classList.add('open');
+  playSound('open');
+}
+function configureLinkButton(btn, url, label){
+  btn.onclick = null;
+  if(url){
+    btn.disabled = false;
+    btn.textContent = label;
+    btn.onclick = ()=> window.open(url, '_blank');
+  } else {
+    btn.disabled = true;
+    btn.textContent = 'COMING SOON';
+  }
+}
+document.querySelectorAll('[data-close-modal]').forEach(el=>{
+  el.addEventListener('click', ()=> modal.classList.remove('open'));
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('open'); });
+
+/* ---------------- Journey timeline ---------------- */
+const timelineEl = document.getElementById('timeline');
+CONFIG.journey.forEach((j,i)=>{
+  const item = document.createElement('div');
+  item.className = 't-item';
+  item.innerHTML = `
+    <div class="t-index">${String(i+1).padStart(2,'0')} — ${j.stage}</div>
+    <div class="t-title">${j.title.split('.')[0]}</div>
+    <p class="t-desc">${j.title}</p>
+  `;
+  timelineEl.appendChild(item);
+});
+try {
+  const tObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  },{threshold:.3});
+  document.querySelectorAll('.t-item').forEach(el=>tObserver.observe(el));
+} catch(e){
+  console.warn('Timeline animation unavailable, showing items directly', e);
+  document.querySelectorAll('.t-item').forEach(el=>el.classList.add('in'));
+}
+
+/* ---------------- Achievements ---------------- */
+const achGrid = document.getElementById('ach-grid');
+CONFIG.achievements.forEach(a=>{
+  const card = document.createElement('div');
+  card.className = 'glass ach-card ' + (a.unlocked ? 'unlocked' : 'locked');
+  card.innerHTML = `
+    <div class="ach-icon">${a.unlocked ? '&#9733;' : '&#128274;'}</div>
+    <div class="ach-name">${a.name}</div>
+    <div class="ach-tag">${a.unlocked ? a.tag : 'LOCKED'}</div>
+  `;
+  achGrid.appendChild(card);
+});
+
+/* ============================================================
+   BOOT SEQUENCE
+   ============================================================ */
+const bootChecks = ['Neural Interface','Portfolio Database','Project Database','AI Assistant','Voice Interface','Security System','Visual Interface'];
+const checksEl = document.getElementById('boot-checks');
+const boot = document.getElementById('boot');
+const barFill = document.getElementById('boot-bar');
+const onlineEl = document.getElementById('boot-online');
+let reducedMotion = false;
+try { reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){ console.warn('matchMedia unavailable', e); }
+
+let bootDone = false;
+function finishBoot(){
+  if(bootDone) return;
+  bootDone = true;
+  boot.classList.add('hidden');
+  setTimeout(()=> boot.style.display='none', 700);
+}
+
+function runBoot(){
+  if(reducedMotion){ finishBoot(); return; }
+  bootChecks.forEach((label, i)=>{
+    const li = document.createElement('div');
+    li.className = 'check-item';
+    li.innerHTML = `<span class="mark">&#9679;</span> <span>${label}</span>`;
+    checksEl.appendChild(li);
+    setTimeout(()=>{
+      li.classList.add('show','ok');
+      li.querySelector('.mark').innerHTML = '&#10003;';
+      barFill.style.width = Math.round(((i+1)/bootChecks.length)*100) + '%';
+    }, 260 + i*220);
+  });
+  setTimeout(()=>{ onlineEl.classList.add('show'); }, 260 + bootChecks.length*220 + 200);
+  setTimeout(finishBoot, 260 + bootChecks.length*220 + 1100);
+}
+runBoot();
+document.getElementById('skip-intro').addEventListener('click', finishBoot);
+
+/* ============================================================
+   CUSTOM CURSOR (desktop only)
+   ============================================================ */
+try {
+  const isTouch = matchMedia('(pointer: coarse)').matches;
+  if(!isTouch){
+    document.body.classList.add('has-cursor');
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let rx=innerWidth/2, ry=innerHeight/2;
+    window.addEventListener('mousemove', e=>{
+      dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px';
+      rx = e.clientX; ry = e.clientY;
+    });
+    (function loop(){
+      ring.style.left = rx+'px'; ring.style.top = ry+'px';
+      requestAnimationFrame(loop);
+    })();
+    document.addEventListener('mouseover', e=>{
+      if(e.target.closest('a,button,input,textarea,[role="button"],.skill-card,.project-card')) ring.classList.add('expand');
+    });
+    document.addEventListener('mouseout', e=>{
+      if(e.target.closest('a,button,input,textarea,[role="button"],.skill-card,.project-card')) ring.classList.remove('expand');
+    });
+  } else {
+    document.getElementById('cursor-dot').style.display='none';
+    document.getElementById('cursor-ring').style.display='none';
+  }
+} catch(e){ console.warn('Custom cursor failed to initialize', e); }
+
+/* ============================================================
+   NAV: scroll style, active link, mobile menu, smooth scroll
+   ============================================================ */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  navEl.classList.toggle('scrolled', window.scrollY > 30);
+}, {passive:true});
+
+const navToggle = document.getElementById('nav-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+navToggle.addEventListener('click', ()=>{
+  const open = mobileMenu.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('[data-nav]').forEach(a=>{
+  a.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+});
+
+const sections = ['hero','about','skills','projects','journey','contact'].map(id=>document.getElementById(id));
+const navLinkMap = {};
+document.querySelectorAll('#nav-links a').forEach(a=> navLinkMap[a.getAttribute('href')] = a);
+try {
+  const secObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        Object.values(navLinkMap).forEach(a=>a.classList.remove('active'));
+        const link = navLinkMap['#'+e.target.id];
+        if(link) link.classList.add('active');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s=> s && secObserver.observe(s));
+} catch(e){ console.warn('Section scroll-spy unavailable', e); }
+
+function goToSection(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior: reducedMotion ? 'auto':'smooth'});
+}
+
+/* ============================================================
+   SOUND (subtle synthesized beeps — no external audio files)
+   ============================================================ */
+let soundOn = false;
+let actx = null;
+const soundToggle = document.getElementById('sound-toggle');
+soundToggle.addEventListener('click', ()=>{
+  soundOn = !soundOn;
+  soundToggle.textContent = 'SOUND: ' + (soundOn ? 'ON' : 'OFF');
+  soundToggle.setAttribute('aria-pressed', soundOn);
+  if(soundOn && !actx){ try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+});
+function playSound(type){
+  if(!soundOn || !actx) return;
+  try{
+    const o = actx.createOscillator();
+    const g = actx.createGain();
+    const freqs = {click:520, open:660, boot:340, activate:880, nav:440};
+    o.frequency.value = freqs[type] || 500;
+    o.type = 'sine';
+    g.gain.setValueAtTime(0.06, actx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + .18);
+    o.connect(g); g.connect(actx.destination);
+    o.start(); o.stop(actx.currentTime + .18);
+  }catch(e){}
+}
+document.querySelectorAll('button, a').forEach(el=>{
+  el.addEventListener('click', ()=> playSound('click'));
+});
+
+/* ============================================================
+   BACKGROUND CANVAS — ambient particle field
+   ============================================================ */
+try { (function bgParticles(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  if(!ctx) return;
+  let w,h,particles=[];
+  function resize(){
+    w = canvas.width = innerWidth; h = canvas.height = innerHeight;
+  }
+  resize(); window.addEventListener('resize', resize);
+  const count = Math.min(70, Math.round((innerWidth*innerHeight)/22000));
+  for(let i=0;i<count;i++){
+    particles.push({
+      x:Math.random()*w, y:Math.random()*h,
+      vx:(Math.random()-.5)*.15, vy:(Math.random()-.5)*.15,
+      r:Math.random()*1.6+.4, hue: Math.random()>.5 ? '76,231,255' : '155,107,255',
+      a: Math.random()*.5+.15
+    });
+  }
+  let visible = true;
+  document.addEventListener('visibilitychange', ()=> visible = !document.hidden);
+  function draw(){
+    if(visible && !reducedMotion){
+      ctx.clearRect(0,0,w,h);
+      particles.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(${p.hue},${p.a})`;
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+      });
+    }
+    requestAnimationFrame(draw);
+  }
+  if(!reducedMotion) draw(); else ctx.clearRect(0,0,w,h);
+})(); } catch(e){ console.warn('Background particles unavailable', e); }
+
+/* ============================================================
+   HERO ORB — canvas 2D "holographic" orb (mouse reactive)
+   ============================================================ */
+const orbState = { listening:false, activity:0 };
+try { (function orbCanvas(){
+  const canvas = document.getElementById('orb-canvas');
+  const ctx = canvas.getContext('2d');
+  if(!ctx) return;
+  let size, dpr = Math.min(window.devicePixelRatio||1, 2);
+  function resize(){
+    const rect = canvas.getBoundingClientRect();
+    size = rect.width;
+    canvas.width = size*dpr; canvas.height = size*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(resize);
+
+  let mx=0, my=0;
+  window.addEventListener('mousemove', e=>{
+    const rect = canvas.getBoundingClientRect();
+    mx = ((e.clientX - rect.left - rect.width/2)/rect.width);
+    my = ((e.clientY - rect.top - rect.height/2)/rect.height);
+  });
+
+  let t=0;
+  function draw(){
+    t += reducedMotion ? 0 : 0.012;
+    const cx=size/2, cy=size/2, R=size*0.30;
+    ctx.clearRect(0,0,size,size);
+
+    const pulse = orbState.listening ? (Math.sin(t*8)*0.06+1.1) : (Math.sin(t*1.3)*0.03+1);
+    const tilt = orbState.listening ? 0.55 : Math.max(-0.35, Math.min(0.35, mx*0.6));
+    const tiltY = orbState.listening ? 0.2 : Math.max(-0.2, Math.min(0.2, my*0.4));
+
+    // outer glow
+    const grad = ctx.createRadialGradient(cx,cy,R*0.2,cx,cy,R*1.8);
+    grad.addColorStop(0, orbState.listening ? 'rgba(255,92,122,.35)' : 'rgba(76,231,255,.28)');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(cx,cy,R*1.8,0,Math.PI*2); ctx.fill();
+
+    // core sphere
+    const core = ctx.createRadialGradient(cx - R*0.3, cy - R*0.35, R*0.05, cx, cy, R*pulse);
+    core.addColorStop(0,'#bdf7ff');
+    core.addColorStop(.5, orbState.listening ? '#ff5c7a' : '#4ce7ff');
+    core.addColorStop(1,'#0b2a33');
+    ctx.fillStyle = core;
+    ctx.beginPath(); ctx.arc(cx,cy,R*pulse,0,Math.PI*2); ctx.fill();
+
+    // rings
+    for(let i=0;i<3;i++){
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.rotate(t*(i%2?1:-1)*0.3 + i);
+      ctx.scale(1, 0.32 + tiltY*(i+1)*0.3 + 0.12*i);
+      ctx.strokeStyle = i===1 ? 'rgba(155,107,255,.55)' : 'rgba(76,231,255,.4)';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.ellipse(tilt*R*0.5,0, R*(1.35+i*0.22), R*(1.35+i*0.22), 0, 0, Math.PI*2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // orbiting particles
+    for(let i=0;i<10;i++){
+      const a = t*1.4 + i*(Math.PI*2/10);
+      const rr = R*1.55;
+      const px = cx + Math.cos(a)*rr;
+      const py = cy + Math.sin(a)*rr*0.34 - tiltY*40;
+      ctx.beginPath();
+      ctx.fillStyle = i%3===0 ? 'rgba(155,107,255,.9)' : 'rgba(76,231,255,.8)';
+      ctx.arc(px,py,1.6,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})(); } catch(e){ console.warn('Hero orb canvas unavailable', e); }
+
+/* ============================================================
+   AI ASSISTANT — rule-based, answers only from CONFIG
+   ============================================================ */
+const aiPanel = document.getElementById('ai-panel');
+const aiLauncher = document.getElementById('ai-launcher');
+const aiMessages = document.getElementById('ai-messages');
+const aiInput = document.getElementById('ai-input');
+const aiOrbMini = document.getElementById('ai-orb-mini');
+const aiStat = document.getElementById('ai-stat');
+
+function addMessage(text, who){
+  const el = document.createElement('div');
+  el.className = 'msg ' + who;
+  el.textContent = text;
+  aiMessages.appendChild(el);
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+  return el;
+}
+function addGreeting(){
+  aiMessages.innerHTML = '';
+  addMessage(`Hello. I'm ${CONFIG.name.split(' ')[0]}'s AI assistant. What would you like to know?`, 'bot');
+}
+addGreeting();
+
+function showTyping(){
+  const el = document.createElement('div');
+  el.className = 'msg bot typing';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  aiMessages.appendChild(el);
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+  return el;
+}
+
+function answer(query){
+  const q = query.toLowerCase();
+  if(/who is|about (him|prasanna)|introduce/.test(q)){
+    return `${CONFIG.name} is a ${CONFIG.role}. ${CONFIG.bio}`;
+  }
+  if(/skill|tech|stack|know|language/.test(q)){
+    const list = Object.entries(CONFIG.skills).map(([cat, items])=> `${cat}: ${items.map(i=>i.name).join(', ')}`).join(' | ');
+    return `Here's the current skill system: ${list}.`;
+  }
+  if(/project|built|build|portfolio work/.test(q)){
+    const list = CONFIG.projects.map((p,i)=> `${i+1}. ${p.title} — ${p.desc}`).join(' ');
+    return `Deployed modules: ${list}`;
+  }
+  if(/education|college|degree|diploma|study|school/.test(q)){
+    return `${CONFIG.education} at ${CONFIG.college}, ${CONFIG.location}.`;
+  }
+  if(/contact|reach|email|connect|hire|linkedin|github|instagram/.test(q)){
+    return `You can reach ${CONFIG.name.split(' ')[0]} via email at ${CONFIG.email}, or through the links in the contact section below.`;
+  }
+  if(/goal|future|aspir|ambition/.test(q)){
+    return `The goal: ${CONFIG.goal}`;
+  }
+  if(/interest|hobbies|like/.test(q)){
+    return `Interests include: ${CONFIG.interests.join(', ')}.`;
+  }
+  if(/hello|hi\b|hey/.test(q)){
+    return `Hello! Ask me about skills, projects, education, or how to get in touch.`;
+  }
+  if(/thank/.test(q)){
+    return `You're welcome. Anything else you'd like to explore?`;
+  }
+  return `That information isn't currently available in my knowledge base. Try asking about skills, projects, education, or contact details.`;
+}
+
+function handleUserMessage(text){
+  if(!text.trim()) return;
+  addMessage(text, 'user');
+  aiInput.value = '';
+  const typingEl = showTyping();
+  const delay = 500 + Math.random()*500;
+  setTimeout(()=>{
+    typingEl.remove();
+    addMessage(answer(text), 'bot');
+  }, delay);
+}
+
+aiLauncher.addEventListener('click', ()=>{
+  aiPanel.classList.add('open');
+  aiPanel.classList.remove('minimized');
+  aiInput.focus();
+});
+document.getElementById('ai-close').addEventListener('click', ()=> aiPanel.classList.remove('open'));
+document.getElementById('ai-min').addEventListener('click', ()=> aiPanel.classList.toggle('minimized'));
+document.getElementById('ai-clear').addEventListener('click', addGreeting);
+document.getElementById('ai-send').addEventListener('click', ()=> handleUserMessage(aiInput.value));
+aiInput.addEventListener('keydown', e=>{ if(e.key==='Enter') handleUserMessage(aiInput.value); });
+document.querySelectorAll('.ai-quick button').forEach(b=>{
+  b.addEventListener('click', ()=> handleUserMessage(b.dataset.q));
+});
+
+/* ============================================================
+   VOICE COMMANDS — Web Speech API, with graceful fallback
+   ============================================================ */
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+const micBtn = document.getElementById('ai-mic');
+let recognition = null;
+let listening = false;
+
+function setListening(on){
+  listening = on;
+  orbState.listening = on;
+  micBtn.classList.toggle('listening', on);
+  aiOrbMini.classList.toggle('listening', on);
+  aiStat.textContent = on ? 'LISTENING...' : 'ONLINE';
+}
+
+function runVoiceCommand(transcript){
+  const t = transcript.toLowerCase();
+  addMessage(transcript, 'user');
+  let matched = true;
+  if(/project/.test(t)) goToSection('projects');
+  else if(/skill/.test(t)) goToSection('skills');
+  else if(/about/.test(t)) goToSection('about');
+  else if(/contact/.test(t)) goToSection('contact');
+  else if(/journey/.test(t)) goToSection('journey');
+  else if(/home|back/.test(t)) goToSection('hero');
+  else if(/assistant|start/.test(t)) { aiPanel.classList.add('open'); }
+  else matched = false;
+
+  if(matched){
+    addMessage(`Command received: "${transcript}". Navigating now.`, 'bot');
+  } else {
+    addMessage(answer(transcript), 'bot');
+  }
+}
+
+if(SpeechRecognitionAPI){
+  recognition = new SpeechRecognitionAPI();
+  recognition.lang = 'en-US';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.onresult = (e)=>{
+    const transcript = e.results[0][0].transcript;
+    runVoiceCommand(transcript);
+  };
+  recognition.onerror = ()=>{ setListening(false); };
+  recognition.onend = ()=>{ setListening(false); };
+
+  micBtn.addEventListener('click', ()=>{
+    if(listening){ recognition.stop(); return; }
+    aiPanel.classList.add('open');
+    setListening(true);
+    addMessage('LISTENING...', 'bot');
+    try{ recognition.start(); }catch(err){ setListening(false); }
+  });
+} else {
+  micBtn.addEventListener('click', ()=>{
+    aiPanel.classList.add('open');
+    addMessage("Voice commands aren't supported in this browser. Try Chrome or Edge on desktop or Android, or just type your question here.", 'bot');
+  });
+}
+
+/* ============================================================
+   CONTACT FORM — validation + simulated transmission
+   ============================================================ */
+const form = document.getElementById('contact-form');
+const status = document.getElementById('contact-status');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  const name = document.getElementById('cf-name');
+  const email = document.getElementById('cf-email');
+  const message = document.getElementById('cf-message');
+  let valid = true;
+
+  toggleFieldError('f-name', name.value.trim().length === 0); 
+  if(name.value.trim().length===0) valid = false;
+
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+  toggleFieldError('f-email', !emailOk);
+  if(!emailOk) valid = false;
+
+  toggleFieldError('f-message', message.value.trim().length === 0);
+  if(message.value.trim().length===0) valid = false;
+
+  status.classList.remove('show','ok','bad');
+  if(!valid){
+    status.textContent = 'Please fix the highlighted fields before sending.';
+    status.classList.add('show','bad');
+    return;
+  }
+
+  // NOTE: no backend is connected. This simulates transmission locally.
+  // Wire this to a real endpoint (e.g. a serverless function or email API)
+  // to actually deliver messages — never put email-service secrets in this file.
+  status.textContent = 'TRANSMISSION SENT';
+  status.classList.add('show','ok');
+  form.reset();
+});
+function toggleFieldError(id, invalid){
+  document.getElementById(id).classList.toggle('invalid', invalid);
+}
+
+/* ============================================================
+   COMMAND TERMINAL
+   ============================================================ */
+const termLauncher = document.getElementById('term-launcher');
+const terminal = document.getElementById('terminal');
+const termOutput = document.getElementById('term-output');
+const termInput = document.getElementById('term-input');
+
+function termPrint(text, cls){
+  const line = document.createElement('div');
+  line.className = 'line' + (cls ? ' '+cls : '');
+  line.textContent = text;
+  termOutput.appendChild(line);
+  termOutput.scrollTop = termOutput.scrollHeight;
+}
+function openTerminal(){
+  terminal.classList.add('open');
+  termOutput.innerHTML='';
+  termPrint('PRASANNA_TERMINAL — connection established.');
+  termPrint('Type "help" to see available commands.');
+  termInput.focus();
+}
+termLauncher.addEventListener('click', openTerminal);
+document.getElementById('term-close').addEventListener('click', ()=> terminal.classList.remove('open'));
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && terminal.classList.contains('open')) terminal.classList.remove('open');
+  if(e.key==='`' && !terminal.classList.contains('open')) openTerminal();
+});
+
+const termCommands = {
+  help(){
+    termPrint('Available commands:');
+    termPrint('  about      — profile summary');
+    termPrint('  skills     — technology stack');
+    termPrint('  projects   — deployed modules');
+    termPrint('  education  — academic background');
+    termPrint('  contact    — how to get in touch');
+    termPrint('  system     — run system diagnostic');
+    termPrint('  clear      — clear the terminal');
+  },
+  about(){ termPrint(CONFIG.bio); },
+  skills(){
+    Object.entries(CONFIG.skills).forEach(([cat, items])=>{
+      termPrint(`${cat}: ${items.map(i=>i.name).join(', ')}`);
+    });
+  },
+  projects(){
+    CONFIG.projects.forEach((p,i)=> termPrint(`${i+1}. ${p.title}`));
+  },
+  education(){ termPrint(`${CONFIG.education} — ${CONFIG.college}, ${CONFIG.location}`); },
+  contact(){ termPrint(`Email: ${CONFIG.email}`); },
+  system(){
+    termPrint('Running system diagnostic...', 'cmd');
+    ['Neural Interface','Portfolio Database','AI Core','Voice Interface','Visual Renderer'].forEach((c,i)=>{
+      setTimeout(()=> termPrint(`  [OK] ${c}`, 'ok-line'), 220*(i+1));
+    });
+    setTimeout(()=> termPrint('All systems nominal.', 'ok-line'), 220*6);
+  },
+  clear(){ termOutput.innerHTML=''; },
+  // easter egg
+  '--diagnostic'(){ termCommands.system(); }
+};
+termInput.addEventListener('keydown', e=>{
+  if(e.key !== 'Enter') return;
+  const raw = termInput.value.trim();
+  if(!raw) return;
+  termPrint('> ' + raw, 'cmd');
+  termInput.value = '';
+  const [cmd, ...rest] = raw.toLowerCase().split(' ');
+  if(cmd === 'system' && rest.join(' ') === '--diagnostic'){ termCommands.system(); return; }
+  if(cmd === 'navigate' && rest[0]){ goToSection(rest[0]); termPrint('Navigating to ' + rest[0] + '...'); return; }
+  if(termCommands[cmd]) termCommands[cmd]();
+  else termPrint(`Command not recognized: "${raw}". Type "help" for options.`);
+});
+
+})();
+</script>
+</body>
+</html>
