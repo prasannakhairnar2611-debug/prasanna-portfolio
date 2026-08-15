@@ -455,6 +455,546 @@ footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--ion-dim);}
 </style>
+
+<style id="mobile-original-style">
+/* ============================================================
+   ORIGINAL DESKTOP + PREMIUM MOBILE MODE
+   Desktop is intentionally untouched.
+   Mobile gets a separate composition using the same visual language.
+   ============================================================ */
+@media (max-width: 600px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden !important;
+  }
+
+  body { padding-bottom: 82px; }
+
+  /* Keep the original header, but make it feel like a compact HUD */
+  #nav {
+    height: 68px;
+    padding: 10px 14px !important;
+    background: linear-gradient(180deg, #05070D 10%, #05070Dcc 75%, transparent);
+    border-bottom: 1px solid #1E2A3C88;
+  }
+
+  .brand {
+    font-size: 16px;
+    gap: 9px;
+    letter-spacing: .09em;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  #nav-toggle {
+    width: 46px;
+    height: 46px;
+    display: grid !important;
+    place-items: center;
+    border-color: #4CE7FF44;
+    background: #0B0F1A99;
+    box-shadow: 0 0 22px #4CE7FF12;
+  }
+
+  /* Mobile hero is a deliberate single-column composition */
+  #hero {
+    min-height: auto !important;
+    padding: 104px 14px 38px !important;
+    display: block !important;
+    overflow: hidden;
+  }
+
+  .hero-wrap {
+    width: 100% !important;
+    max-width: 430px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    text-align: center !important;
+  }
+
+  .hero-wrap > div:first-child {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .eyebrow {
+    justify-content: center !important;
+    font-size: 9px !important;
+    letter-spacing: .16em !important;
+    margin-bottom: 15px !important;
+    white-space: nowrap;
+  }
+
+  .eyebrow::before {
+    width: 17px !important;
+  }
+
+  .hero-title {
+    width: 100%;
+    font-size: clamp(37px, 11.8vw, 53px) !important;
+    line-height: .98 !important;
+    letter-spacing: .005em !important;
+    overflow-wrap: normal !important;
+  }
+
+  .hero-title .accent {
+    display: block;
+    margin-top: 2px;
+  }
+
+  .hero-role {
+    max-width: 360px;
+    margin: 17px auto 0 !important;
+    font-size: 8.5px !important;
+    line-height: 1.9 !important;
+    letter-spacing: .09em !important;
+  }
+
+  .hero-tagline {
+    max-width: 330px !important;
+    margin: 15px auto 0 !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Creative mobile action modules instead of giant desktop buttons */
+  .hero-actions {
+    width: 100% !important;
+    max-width: 390px !important;
+    margin: 25px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .hero-actions .btn {
+    width: 100% !important;
+    min-height: 68px !important;
+    padding: 10px 17px !important;
+    border-radius: 16px !important;
+    justify-content: flex-start !important;
+    text-align: left;
+    letter-spacing: .11em !important;
+    font-size: 10px !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-actions .btn::after {
+    content: "›";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-53%);
+    font-family: var(--display);
+    font-size: 28px;
+    line-height: 1;
+    color: currentColor;
+    opacity: .9;
+  }
+
+  .hero-actions .btn::before {
+    width: 34px;
+    height: 34px;
+    margin-right: 11px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    font-family: var(--mono);
+    flex: 0 0 34px;
+  }
+
+  .hero-actions .btn-primary {
+    background:
+      linear-gradient(110deg, #4CE7FF1c, #4CE7FF05 65%),
+      #0B0F1AF0 !important;
+    color: var(--text) !important;
+    border: 1px solid #4CE7FF88 !important;
+    box-shadow: inset 0 0 30px #4CE7FF0b, 0 8px 35px #4CE7FF0b;
+  }
+
+  .hero-actions .btn-primary::before {
+    content: "◉";
+    color: var(--ion);
+    border: 1px solid #4CE7FF66;
+    background: #4CE7FF0d;
+    box-shadow: 0 0 16px #4CE7FF18;
+  }
+
+  .hero-actions .btn-ghost {
+    background:
+      linear-gradient(110deg, #9B6BFF16, transparent 70%),
+      #0B0F1AF0 !important;
+    border: 1px solid #9B6BFF66 !important;
+    color: var(--text) !important;
+    box-shadow: inset 0 0 30px #9B6BFF0a;
+  }
+
+  .hero-actions .btn-ghost::before {
+    content: "↗";
+    color: var(--nebula);
+    border: 1px solid #9B6BFF55;
+    background: #9B6BFF0c;
+  }
+
+  .hero-actions .btn:active {
+    transform: scale(.985);
+  }
+
+  /* Compact AI core / system area beneath the CTAs */
+  .orb-stage {
+    width: 100% !important;
+    max-width: 390px !important;
+    min-height: 270px !important;
+    height: 270px !important;
+    margin: 24px auto 0 !important;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #1E2A3C88;
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 50% 50%, #4CE7FF0c, transparent 43%),
+      linear-gradient(135deg, #0B0F1A88, #05070D44);
+    box-shadow: inset 0 0 50px #4CE7FF06;
+  }
+
+  .orb-stage::before {
+    content: "AI CORE";
+    position: absolute;
+    top: 13px;
+    left: 16px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .2em;
+    color: var(--ion);
+    z-index: 2;
+  }
+
+  .orb-stage::after {
+    content: "ACTIVE  /  READY";
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .12em;
+    color: var(--ok);
+    z-index: 2;
+  }
+
+  #orb-canvas {
+    width: 235px !important;
+    height: 235px !important;
+    max-width: 65vw !important;
+    max-height: 65vw !important;
+  }
+
+  .hud-float {
+    position: absolute !important;
+    margin: 0 !important;
+    animation: none !important;
+    font-size: 7px !important;
+    padding: 6px 8px !important;
+    letter-spacing: .06em !important;
+    white-space: nowrap !important;
+    max-width: 145px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #05070Dcc !important;
+    backdrop-filter: blur(8px);
+  }
+
+  .hud-float.f1 { left: 9px !important; top: 46px !important; }
+  .hud-float.f2 { right: 9px !important; top: 46px !important; }
+  .hud-float.f3 { left: 9px !important; bottom: 22px !important; }
+  .hud-float.f4 { right: 9px !important; bottom: 22px !important; }
+
+  /* All sections retain the original desktop visual system */
+  .section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 76px 16px !important;
+    overflow: hidden;
+  }
+
+  .sec-head {
+    margin-bottom: 32px !important;
+  }
+
+  .sec-head h2 {
+    font-size: 31px !important;
+    line-height: 1.05;
+  }
+
+  .sec-head p {
+    font-size: 13px;
+  }
+
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .info-cards {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .info-card {
+    padding: 15px !important;
+    min-width: 0;
+  }
+
+  .info-card .value {
+    font-size: 14px !important;
+    overflow-wrap: anywhere;
+  }
+
+  .skill-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none;
+    padding-bottom: 7px;
+  }
+
+  .skill-tabs::-webkit-scrollbar { display: none; }
+
+  .skill-tab {
+    flex: 0 0 auto !important;
+    min-height: 40px;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .skill-card {
+    min-width: 0;
+    padding: 17px 10px !important;
+  }
+
+  .skill-card .sk-name {
+    font-size: 15px;
+    overflow-wrap: anywhere;
+  }
+
+  .skill-card .sk-desc {
+    opacity: 1;
+    max-height: 70px;
+    font-size: 10px;
+  }
+
+  .project-card {
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px !important;
+    gap: 10px !important;
+  }
+
+  .project-title {
+    font-size: 18px !important;
+    line-height: 1.15;
+  }
+
+  .project-desc {
+    font-size: 13px !important;
+  }
+
+  .project-cta {
+    align-items: stretch !important;
+    flex-direction: column !important;
+  }
+
+  .project-cta .btn {
+    width: 100%;
+  }
+
+  .timeline {
+    padding-left: 28px !important;
+  }
+
+  .ach-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-side {
+    padding: 20px !important;
+  }
+
+  .contact-grid form {
+    padding: 20px !important;
+  }
+
+  /* Mobile command center and AI button are docked above the navigation */
+  #term-launcher {
+    left: 12px !important;
+    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+    z-index: 910 !important;
+    padding: 9px 12px !important;
+    font-size: 8px !important;
+    background: #0B0F1Aee !important;
+    border-color: #1E2A3C !important;
+  }
+
+  #ai-launcher {
+    width: 64px !important;
+    height: 64px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: calc(58px + env(safe-area-inset-bottom)) !important;
+    z-index: 920 !important;
+    box-shadow:
+      0 0 0 1px #4CE7FF66,
+      0 0 0 7px #05070D,
+      0 0 0 8px #4CE7FF22,
+      0 10px 35px #4CE7FF22 !important;
+  }
+
+  #ai-launcher:hover {
+    transform: translateX(-50%) scale(1.04) !important;
+  }
+
+  /* Mobile AI panel */
+  #ai-panel {
+    left: 8px !important;
+    right: 8px !important;
+    bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+    height: min(76dvh, 620px) !important;
+    max-height: calc(100dvh - 16px) !important;
+    border-radius: 18px !important;
+  }
+
+  #ai-input {
+    min-width: 0 !important;
+    font-size: 16px !important;
+  }
+
+  #ai-mic, #ai-send {
+    width: 44px !important;
+    min-width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Holographic bottom navigation — mobile only */
+  #mobile-hud-nav {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    height: 58px;
+    z-index: 905;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    padding: 5px 7px;
+    border: 1px solid #1E2A3C;
+    border-radius: 20px;
+    background: #080C16eF;
+    backdrop-filter: blur(18px);
+    box-shadow:
+      0 -8px 35px #00000066,
+      inset 0 1px 0 #FFFFFF08,
+      0 0 30px #4CE7FF08;
+  }
+
+  #mobile-hud-nav a {
+    height: 46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border-radius: 13px;
+    color: #8CA0BE;
+    font-family: var(--mono);
+    font-size: 7px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: .2s ease;
+  }
+
+  #mobile-hud-nav a .m-icon {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  #mobile-hud-nav a:active {
+    transform: scale(.92);
+  }
+
+  #mobile-hud-nav a.active {
+    color: var(--ion);
+    background: #4CE7FF0d;
+    box-shadow: inset 0 0 18px #4CE7FF08;
+  }
+
+  /* AI orb sits over the middle navigation slot */
+  #mobile-hud-nav a:nth-child(3) {
+    opacity: .25;
+    pointer-events: none;
+  }
+
+  /* Mobile modal */
+  #project-modal {
+    padding: 10px !important;
+    align-items: flex-end !important;
+  }
+
+  #project-modal .modal-panel {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: 88dvh !important;
+    padding: 24px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  /* Touch devices do not need the desktop cursor */
+  #cursor-dot, #cursor-ring {
+    display: none !important;
+  }
+
+  body.has-cursor,
+  body.has-cursor a,
+  body.has-cursor button,
+  body.has-cursor input,
+  body.has-cursor textarea {
+    cursor: auto !important;
+  }
+
+  /* Keep the original visual identity, just soften it for small screens */
+  .bg-grid { opacity: .20 !important; background-size: 48px 48px !important; }
+  .bg-glow { opacity: .72 !important; }
+
+  footer {
+    padding: 30px 16px 96px !important;
+  }
+
+  footer p {
+    font-size: 8px !important;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-title { font-size: 34px !important; }
+  .info-cards { grid-template-columns: 1fr !important; }
+  .skill-grid { grid-template-columns: 1fr !important; }
+  #mobile-hud-nav { left: 6px; right: 6px; }
+}
+</style>
+
 </head>
 <body>
 
@@ -506,6 +1046,27 @@ footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--
   <a href="#journey" data-nav>Journey</a>
   <a href="#contact" data-nav>Contact</a>
 </div>
+
+
+<!-- Mobile-only futuristic navigation -->
+<nav id="mobile-hud-nav" aria-label="Mobile navigation">
+  <a href="#hero" class="active" data-mobile-nav>
+    <span class="m-icon">⌂</span><span>HOME</span>
+  </a>
+  <a href="#about" data-mobile-nav>
+    <span class="m-icon">◉</span><span>ABOUT</span>
+  </a>
+  <a href="#skills" data-mobile-nav>
+    <span class="m-icon">AI</span><span>CORE</span>
+  </a>
+  <a href="#projects" data-mobile-nav>
+    <span class="m-icon">&lt;/&gt;</span><span>WORK</span>
+  </a>
+  <a href="#contact" data-mobile-nav>
+    <span class="m-icon">✦</span><span>CONTACT</span>
+  </a>
+</nav>
+
 
 <main>
 <!-- ================= HERO ================= -->
@@ -723,7 +1284,7 @@ const CONFIG = {
   social: {
     github: "", // TODO: add real GitHub URL
     linkedin: "", // TODO: add real LinkedIn URL
-    instagram: "https://www.instagram.com/itsprasanna_k?igsh=enNncjV0NXMzbnJ2" // TODO: add real Instagram URL
+    instagram: "" // TODO: add real Instagram URL
   },
   resumeUrl: "", // TODO: add a real PDF URL to enable resume download
   skills: {
@@ -1504,593 +2065,54 @@ termInput.addEventListener('keydown', e=>{
 })();
 </script>
 
-<!-- ============================================================
-     MOBILE + VOICE PATCH
-     Keeps the original portfolio intact.
-     ============================================================ -->
-<style id="mobile-voice-patch">
-@media (max-width: 600px){
-  html,body{width:100%;max-width:100%;overflow-x:hidden}
-  body{min-width:0}
-  .section{width:100%;padding:72px 16px}
-  #hero{min-height:100svh;padding:88px 16px 32px}
-  .hero-title{font-size:clamp(34px,11vw,54px);line-height:1}
-  .hero-role{font-size:9px;line-height:1.7;letter-spacing:.11em}
-  .hero-tagline{font-size:14px}
-  .hero-actions{width:100%;gap:9px;flex-wrap:wrap}
-  .hero-actions .btn{flex:1 1 145px;min-height:46px;justify-content:center}
-  .skill-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .project-card{grid-template-columns:1fr;padding:18px}
-  .project-cta{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
-  .project-cta .btn{min-height:40px}
-  .timeline{padding-left:28px}
-  .timeline::before{left:7px}
-  .t-item::before{left:-28px;width:16px;height:16px}
-
-  /* AI panel */
-  #ai-launcher{
-    right:14px;
-    bottom:max(14px,env(safe-area-inset-bottom));
-    width:58px;height:58px;
-  }
-  #ai-panel{
-    left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));
-    width:auto;max-width:none;
-    height:min(76dvh,620px);
-    max-height:calc(100dvh - 16px);
-    border-radius:16px;
-  }
-  .ai-head{min-height:58px;padding:10px 12px}
-  .ai-head-actions button{min-width:38px;min-height:38px}
-  #ai-messages{padding:12px;gap:9px;-webkit-overflow-scrolling:touch}
-  .msg{max-width:92%;font-size:13px}
-  .ai-quick{padding:0 12px 9px;gap:6px;overflow-x:auto;flex-wrap:nowrap}
-  .ai-quick button{flex:0 0 auto;min-height:36px}
-  .ai-input-row{padding:9px 10px max(9px,env(safe-area-inset-bottom));gap:7px}
-  #ai-input{font-size:16px;min-width:0;min-height:44px}
-  #ai-mic,#ai-send{width:44px;min-width:44px;height:44px}
-
-  /* Terminal */
-  #term-launcher{left:10px;bottom:max(14px,env(safe-area-inset-bottom));font-size:9px}
-  #terminal{padding:8px}
-  .term-box{width:100%;height:min(80dvh,580px)}
-  #term-input{font-size:16px;min-height:42px}
-
-  /* Touch devices do not need a mouse cursor */
-  #cursor-dot,#cursor-ring{display:none!important}
-  body.has-cursor,body.has-cursor a,body.has-cursor button,
-  body.has-cursor input,body.has-cursor textarea{cursor:auto!important}
-
-  .bg-grid{opacity:.16}
-  .bg-glow{opacity:.55}
-}
-@media (max-width:380px){
-  .section{padding-left:12px;padding-right:12px}
-  #hero{padding-left:12px;padding-right:12px}
-  .skill-grid{grid-template-columns:1fr}
-  .hero-actions{flex-direction:column}
-  .hero-actions .btn{width:100%}
-}
-@media (prefers-reduced-motion:reduce){
-  #bg-canvas{display:none}
-}
-</style>
-
 <script>
 (function(){
-  'use strict';
+  const nav = document.getElementById('mobile-hud-nav');
+  if(!nav) return;
 
-  /* ---------- Mobile-safe voice commands ---------- */
-  const VoiceAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const mic = document.getElementById('ai-mic');
+  const links = [...nav.querySelectorAll('[data-mobile-nav]')];
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
 
-  if(!mic) return;
-
-  let voice = null;
-  let isListening = false;
-  let starting = false;
-
-  function setVoiceState(on){
-    isListening = on;
-    starting = false;
-    if(typeof orbState !== 'undefined') orbState.listening = on;
-    if(typeof aiOrbMini !== 'undefined') aiOrbMini.classList.toggle('listening',on);
-    mic.classList.toggle('listening',on);
-
-    if(typeof aiStat !== 'undefined')
-      aiStat.textContent = on ? 'LISTENING...' : 'ONLINE';
-
-    mic.setAttribute('aria-pressed',String(on));
-    mic.setAttribute('aria-label',on ? 'Stop voice command':'Voice command');
-  }
-
-  function say(text){
-    if(typeof addMessage === 'function') addMessage(text,'bot');
-  }
-
-  function command(text){
-    const t=text.toLowerCase().trim();
-
-    if(typeof addMessage === 'function') addMessage(text,'user');
-
-    if(/project/.test(t)){
-      goToSection('projects');
-      say('Opening projects.');
-    }else if(/skill/.test(t)){
-      goToSection('skills');
-      say('Opening skills.');
-    }else if(/about/.test(t)){
-      goToSection('about');
-      say('Opening about.');
-    }else if(/contact/.test(t)){
-      goToSection('contact');
-      say('Opening contact.');
-    }else if(/journey/.test(t)){
-      goToSection('journey');
-      say('Opening journey.');
-    }else if(/home|back/.test(t)){
-      goToSection('hero');
-      say('Returning home.');
-    }else if(/assistant|start/.test(t)){
-      if(typeof aiPanel!=='undefined'){
-        aiPanel.classList.add('open');
-        aiPanel.classList.remove('minimized');
-      }
-      say('Assistant ready.');
-    }else if(typeof answer==='function'){
-      say(answer(text));
-    }
-  }
-
-  function voiceError(error){
-    const messages={
-      'not-allowed':'Microphone permission was denied. Allow microphone access for this website and try again.',
-      'service-not-allowed':'Voice recognition is blocked by this browser. You can still use the text assistant.',
-      'audio-capture':'No microphone could be accessed. Check your phone microphone permission.',
-      'network':'Voice recognition needs a network connection in this browser.',
-      'no-speech':'I did not hear anything. Tap the microphone and speak after LISTENING appears.',
-      'aborted':'Voice command stopped.'
-    };
-    say(messages[error] || 'Voice recognition is unavailable. You can still use the text assistant.');
-  }
-
-  if(!VoiceAPI){
-    mic.addEventListener('click',function(){
-      if(typeof aiPanel!=='undefined'){
-        aiPanel.classList.add('open');
-        aiPanel.classList.remove('minimized');
-      }
-      say('Voice commands are not supported by this browser or device. Try Chrome on Android, or use the text assistant.');
+  function setActive(id){
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
     });
-    return;
   }
 
-  try{
-    voice=new VoiceAPI();
-    voice.lang=(navigator.language && /^en/i.test(navigator.language))
-      ? navigator.language : 'en-IN';
-    voice.continuous=false;
-    voice.interimResults=false;
-    voice.maxAlternatives=1;
-
-    voice.onstart=function(){setVoiceState(true)};
-
-    voice.onresult=function(e){
-      const text=e.results && e.results[0] && e.results[0][0]
-        ? e.results[0][0].transcript : '';
-      setVoiceState(false);
-      if(text.trim()) command(text);
-      else say('No voice command detected. Please try again.');
-    };
-
-    voice.onerror=function(e){
-      setVoiceState(false);
-      voiceError(e.error);
-    };
-
-    voice.onend=function(){setVoiceState(false)};
-
-    mic.addEventListener('click',function(){
-      if(starting) return;
-
-      if(isListening){
-        try{voice.stop()}catch(e){}
-        setVoiceState(false);
-        return;
-      }
-
-      if(typeof aiPanel!=='undefined'){
-        aiPanel.classList.add('open');
-        aiPanel.classList.remove('minimized');
-      }
-
-      starting=true;
-      if(typeof aiStat!=='undefined') aiStat.textContent='STARTING...';
-
-      try{
-        voice.start();
-      }catch(e){
-        setVoiceState(false);
-        say('Voice recognition could not start. Please tap the microphone again.');
-      }
+  links.forEach(a => {
+    a.addEventListener('click', function(e){
+      const target = document.querySelector(this.getAttribute('href'));
+      if(!target) return;
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      setActive(target.id);
     });
-  }catch(e){
-    mic.addEventListener('click',function(){
-      say('Voice recognition is unavailable on this device. You can still type your question.');
+  });
+
+  try {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if(visible) setActive(visible.target.id);
+    }, {threshold:[.2,.45,.7]});
+
+    sections.forEach(s => observer.observe(s));
+  } catch(e) {}
+
+  /* Center AI CORE navigation action opens the existing assistant. */
+  const core = links[2];
+  if(core){
+    core.addEventListener('click', function(e){
+      e.preventDefault();
+      const ai = document.getElementById('ai-launcher');
+      if(ai) ai.click();
     });
   }
 })();
 </script>
-
-
-<style id="final-mobile-layout-fix">
-/* FINAL MOBILE JARVIS LAYOUT
-   This layer intentionally overrides desktop sizing only on small screens. */
-@media (max-width: 600px) {
-  html, body {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    overflow-x: hidden !important;
-  }
-
-  body {
-    position: relative;
-  }
-
-  /* Prevent any oversized child from creating horizontal scroll. */
-  #hero, #hero *, .section, .section *, main, main * {
-    max-width: 100%;
-  }
-
-  /* Header */
-  #nav {
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    padding: 12px 16px !important;
-  }
-
-  .brand {
-    min-width: 0 !important;
-    max-width: calc(100vw - 92px) !important;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  #nav-links {
-    display: none !important;
-  }
-
-  .nav-right {
-    margin-left: auto !important;
-    min-width: 44px !important;
-  }
-
-  .ai-status {
-    display: none !important;
-  }
-
-  #nav-toggle {
-    display: grid !important;
-    width: 44px !important;
-    height: 44px !important;
-    flex: 0 0 44px !important;
-  }
-
-  /* Hero: force a single clean mobile column */
-  #hero {
-    width: 100% !important;
-    min-width: 0 !important;
-    min-height: 100svh !important;
-    padding: 92px 16px 34px !important;
-    overflow: hidden !important;
-  }
-
-  #hero .hero-wrap {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 0 !important;
-  }
-
-  #hero .hero-copy {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    text-align: center !important;
-    order: 1 !important;
-  }
-
-  #hero .eyebrow {
-    justify-content: center !important;
-    width: 100% !important;
-    font-size: 9px !important;
-    letter-spacing: .13em !important;
-    white-space: nowrap !important;
-  }
-
-  #hero .hero-title {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    font-size: clamp(36px, 12vw, 54px) !important;
-    line-height: .98 !important;
-    letter-spacing: .01em !important;
-    overflow-wrap: anywhere !important;
-    word-break: normal !important;
-    text-align: center !important;
-  }
-
-  #hero .hero-role {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    font-size: 8.5px !important;
-    line-height: 1.8 !important;
-    letter-spacing: .08em !important;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    text-align: center !important;
-  }
-
-  #hero .hero-tagline {
-    width: 100% !important;
-    max-width: 340px !important;
-    margin: 14px auto 0 !important;
-    font-size: 14px !important;
-    line-height: 1.55 !important;
-    text-align: center !important;
-  }
-
-  #hero .hero-actions {
-    width: 100% !important;
-    max-width: 360px !important;
-    margin: 22px auto 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 9px !important;
-  }
-
-  #hero .hero-actions .btn {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    min-height: 48px !important;
-    margin: 0 !important;
-    justify-content: center !important;
-    white-space: normal !important;
-  }
-
-  /* AI orb area becomes a controlled mobile block */
-  #hero .orb-stage {
-    width: 100% !important;
-    max-width: 340px !important;
-    min-width: 0 !important;
-    height: 300px !important;
-    min-height: 300px !important;
-    margin: 24px auto 0 !important;
-    overflow: hidden !important;
-    order: 2 !important;
-  }
-
-  #hero #orb-canvas {
-    width: 250px !important;
-    height: 250px !important;
-    max-width: 75vw !important;
-    max-height: 75vw !important;
-  }
-
-  /* Floating HUD labels stay inside the phone */
-  #hero .hud-float {
-    max-width: 125px !important;
-    padding: 6px 8px !important;
-    font-size: 7.5px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    transform: none !important;
-  }
-
-  #hero .hud-float.f1 { left: 0 !important; top: 8% !important; }
-  #hero .hud-float.f2 { right: 0 !important; top: 16% !important; }
-  #hero .hud-float.f3 { left: 0 !important; bottom: 16% !important; }
-  #hero .hud-float.f4 { right: 0 !important; bottom: 7% !important; }
-
-  /* Sections */
-  .section {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    padding: 72px 16px !important;
-    overflow: hidden !important;
-  }
-
-  .sec-head,
-  .sec-head h2,
-  .sec-head p {
-    max-width: 100% !important;
-    min-width: 0 !important;
-    overflow-wrap: anywhere !important;
-  }
-
-  /* Skills */
-  .skill-tabs {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    flex-wrap: nowrap !important;
-    scrollbar-width: none !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .skill-tabs::-webkit-scrollbar { display: none; }
-
-  .skill-tab {
-    flex: 0 0 auto !important;
-    min-height: 42px !important;
-  }
-
-  .skill-grid {
-    width: 100% !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 10px !important;
-  }
-
-  .skill-card {
-    min-width: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .skill-card * {
-    max-width: 100% !important;
-    overflow-wrap: anywhere !important;
-  }
-
-  /* Projects */
-  .project-list,
-  .projects-grid {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .project-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    grid-template-columns: 1fr !important;
-    overflow: hidden !important;
-    padding: 18px !important;
-  }
-
-  .project-title,
-  .project-desc {
-    max-width: 100% !important;
-    overflow-wrap: anywhere !important;
-  }
-
-  .project-cta {
-    width: 100% !important;
-    align-items: stretch !important;
-    flex-direction: column !important;
-  }
-
-  .project-cta .btn {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  /* Timeline */
-  .timeline {
-    width: 100% !important;
-    min-width: 0 !important;
-    padding-left: 28px !important;
-  }
-
-  /* Contact */
-  .contact-grid {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  .contact-grid > * {
-    min-width: 0 !important;
-    max-width: 100% !important;
-  }
-
-  /* AI panel */
-  #ai-panel {
-    position: fixed !important;
-    left: 8px !important;
-    right: 8px !important;
-    bottom: max(8px, env(safe-area-inset-bottom)) !important;
-    width: auto !important;
-    max-width: none !important;
-    height: min(76dvh, 620px) !important;
-    max-height: calc(100dvh - 16px) !important;
-  }
-
-  #ai-input {
-    min-width: 0 !important;
-    width: 100% !important;
-    font-size: 16px !important;
-  }
-
-  #ai-mic, #ai-send {
-    flex: 0 0 44px !important;
-    width: 44px !important;
-    min-width: 44px !important;
-  }
-
-  /* Command center */
-  #term-launcher {
-    max-width: calc(100vw - 110px) !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    text-overflow: ellipsis !important;
-  }
-
-  #terminal {
-    padding: 8px !important;
-  }
-
-  .term-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: min(80dvh, 580px) !important;
-  }
-
-  #term-input {
-    min-width: 0 !important;
-    width: 100% !important;
-    font-size: 16px !important;
-  }
-
-  /* Mobile browser doesn't have a mouse */
-  #cursor-dot, #cursor-ring {
-    display: none !important;
-  }
-
-  body.has-cursor,
-  body.has-cursor a,
-  body.has-cursor button,
-  body.has-cursor input,
-  body.has-cursor textarea {
-    cursor: auto !important;
-  }
-
-  /* Avoid expensive effects on phones */
-  .bg-grid { opacity: .15 !important; }
-  .bg-glow { opacity: .55 !important; }
-}
-
-/* Small phones */
-@media (max-width: 380px) {
-  #hero {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-
-  .section {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-
-  .skill-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  #hero .hero-title {
-    font-size: 34px !important;
-  }
-}
-</style>
 
 </body>
 </html>
