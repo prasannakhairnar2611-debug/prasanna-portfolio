@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Prasanna Khairnar | Web Developer &amp; AI Enthusiast</title>
-<meta name="description" content="Portfolio of Prasanna Khairnar, a Computer Engineering student, Web Developer, and AI enthusiast building modern digital experiences." />
+<meta name="description" content="Portfolio of Prasanna Khairnar, a Computer science Engineering student, Web Developer, and AI enthusiast building modern digital experiences." />
 <meta property="og:title" content="Prasanna Khairnar | Web Developer & AI Enthusiast" />
 <meta property="og:description" content="Portfolio of Prasanna Khairnar, a Computer Engineering student, Web Developer, and AI enthusiast building modern digital experiences." />
 <meta property="og:type" content="website" />
@@ -456,6 +456,124 @@ footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--
 ::-webkit-scrollbar-thumb:hover{background:var(--ion-dim);}
 </style>
 
+
+<style id="profile-photo-style">
+/* ============================================================
+   PROFILE PHOTO — ORIGINAL JARVIS VISUAL LANGUAGE
+   Put your image in the same folder as index.html and name it:
+   profile.jpg
+   ============================================================ */
+.profile-photo-wrap{
+  margin-top:28px;
+  width:min(100%,390px);
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.profile-photo-frame{
+  position:relative;
+  width:92px;
+  height:112px;
+  flex:0 0 92px;
+  padding:5px;
+  background:#05070D;
+  border:1px solid var(--ion-dim);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:
+    0 0 24px #4CE7FF0d,
+    inset 0 0 18px #4CE7FF08;
+}
+.profile-photo-frame::before{
+  content:'';
+  position:absolute;
+  inset:4px;
+  border:1px solid #9B6BFF44;
+  border-radius:8px;
+  pointer-events:none;
+  z-index:3;
+}
+.profile-photo-glow{
+  position:absolute;
+  inset:-25%;
+  background:radial-gradient(circle,var(--ion-dim),transparent 65%);
+  filter:blur(12px);
+  pointer-events:none;
+}
+.profile-photo{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  border-radius:7px;
+  filter:saturate(.9) contrast(1.05);
+}
+.profile-photo-scan{
+  position:absolute;
+  z-index:4;
+  left:5px;
+  right:5px;
+  top:10%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--ion),transparent);
+  box-shadow:0 0 8px var(--ion);
+  opacity:.7;
+  animation:profileScan 3.2s linear infinite;
+  pointer-events:none;
+}
+@keyframes profileScan{
+  0%{top:10%;opacity:0}
+  12%{opacity:.75}
+  85%{opacity:.75}
+  100%{top:88%;opacity:0}
+}
+.profile-photo-corner{
+  position:absolute;
+  z-index:5;
+  width:10px;
+  height:10px;
+  border-color:var(--ion);
+  pointer-events:none;
+}
+.profile-photo-corner.c1{top:0;left:0;border-top:2px solid;border-left:2px solid}
+.profile-photo-corner.c2{top:0;right:0;border-top:2px solid;border-right:2px solid}
+.profile-photo-corner.c3{bottom:0;left:0;border-bottom:2px solid;border-left:2px solid}
+.profile-photo-corner.c4{bottom:0;right:0;border-bottom:2px solid;border-right:2px solid}
+.profile-photo-info{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.14em;
+  color:var(--text-faint);
+}
+.profile-photo-info > span:first-child{color:var(--ion);}
+.photo-status{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--ok);
+}
+.photo-status i{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--ok);
+  box-shadow:0 0 8px var(--ok);
+}
+@media (max-width:980px){
+  .profile-photo-wrap{
+    margin:24px auto 0;
+    justify-content:center;
+    text-align:left;
+  }
+}
+</style>
+
 <style id="mobile-original-style">
 /* ============================================================
    ORIGINAL DESKTOP + PREMIUM MOBILE MODE
@@ -716,6 +834,27 @@ footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--
   .hud-float.f2 { right: 9px !important; top: 46px !important; }
   .hud-float.f3 { left: 9px !important; bottom: 22px !important; }
   .hud-float.f4 { right: 9px !important; bottom: 22px !important; }
+
+
+  .profile-photo-wrap{
+    width:min(100%,330px) !important;
+    margin:20px auto 0 !important;
+    justify-content:center !important;
+    gap:12px;
+  }
+
+  .profile-photo-frame{
+    width:78px !important;
+    height:96px !important;
+    flex-basis:78px !important;
+    border-radius:11px;
+  }
+
+  .profile-photo-info{
+    font-size:7.5px !important;
+    letter-spacing:.10em !important;
+    gap:6px;
+  }
 
   /* All sections retain the original desktop visual system */
   .section {
@@ -1081,6 +1220,28 @@ footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--
         <a href="#projects" class="btn btn-primary">EXPLORE SYSTEM</a>
         <a href="#contact" class="btn btn-ghost">CONTACT ME</a>
       </div>
+
+      <!-- ================= PROFILE PHOTO ================= -->
+      <div class="profile-photo-wrap">
+        <div class="profile-photo-frame">
+          <div class="profile-photo-corner c1"></div>
+          <div class="profile-photo-corner c2"></div>
+          <div class="profile-photo-corner c3"></div>
+          <div class="profile-photo-corner c4"></div>
+          <div class="profile-photo-glow"></div>
+          <img
+            src="profile.jpg"
+            alt="Prasanna Khairnar"
+            class="profile-photo"
+            loading="eager"
+          />
+          <div class="profile-photo-scan"></div>
+        </div>
+        <div class="profile-photo-info">
+          <span>IDENTITY VERIFIED</span>
+          <span class="photo-status"><i></i> PROFILE ONLINE</span>
+        </div>
+      </div>
     </div>
     <div class="orb-stage">
       <canvas id="orb-canvas" aria-hidden="true"></canvas>
@@ -1280,7 +1441,7 @@ const CONFIG = {
   bio: "I am a passionate Computer science Engineering student interested in Web Development, Artificial Intelligence, UI/UX, automation, and emerging technologies. I enjoy building practical digital products that solve real-world problems.",
   goal: "Become a Strong Software Engineer and Entrepreneur.",
   interests: ["Web Development","Artificial Intelligence","AI Assistants","Automation","UI/UX","3D Web Experiences","Hackathons","Startup Ideas","Problem Solving"],
-  email: "your.email@example.com", // TODO: replace with real email
+  email: "prasannakhairnar2611@gmail.com", // TODO: replace with real email
   social: {
     github: "", // TODO: add real GitHub URL
     linkedin: "", // TODO: add real LinkedIn URL
